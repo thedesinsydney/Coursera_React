@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
     /*
-Created as a class compontne, not a function, so that state could be stored
+Created as a class component, not a function, so that state could be stored
     */
     constructor(props) {
         super(props);    
