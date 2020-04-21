@@ -44,16 +44,26 @@ class Main extends Component {
       />
         );
     }
-    
+
+    const DishWithId = ({match}) => {
+      return(
+          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+      );
+    };
+
     return (
       /*  Implementing Routing (react-router-dom); this allows navigation to different pages (see menu as a destination)
       Having the Redirect tag defines the default location is nothing is specified in the url
+      Note below for exact path - this Route will only be called if /menu is called; not /menu*
+      If it is /menu/something; then it will go to the next Route
       */
       <div>
         <Header />
         <Switch>
           <Route path="/home" component={HomePage} />
           <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+          <Route path='/menu/:dishId' component={DishWithId} />
           <Route exact path="/contactus" component={Contact}/>
           <Redirect to="/home" />
         </Switch>
